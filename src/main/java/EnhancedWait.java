@@ -95,6 +95,17 @@ public class EnhancedWait {
         return wait.until(webDriver -> element.getText().equals(expectedText));
     }
 
+    /**
+     * Waits for a custom condition to evaluate to {@code true}
+     *
+     * <p> This method uses a functional interface to define a condition and
+     * waits until the condition returns {@code true} or the timeout expires.</p>
+     *
+     * @param condition a {@code Function<WebDriver, Boolean>} that represents the condition to be met
+     * @param timeoutInSeconds the max time to wait for the condition to be satisfied, in seconds
+     * @return {@code true} if the condition is satisfied within the timeout, {@code false} otherwise
+     */
+
     public boolean waitForCondition(Function<WebDriver, Boolean> condition, int timeoutInSeconds) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
